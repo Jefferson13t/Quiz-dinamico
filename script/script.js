@@ -67,17 +67,27 @@ class AddNewQuestion extends React.Component {
     constructor(props){
         super(props)
     }
-    teste = () => {console.log('teste')}
+    addNewQuestion = () => {
+        const form = {question: document.getElementById('question').value,
+        altA: document.getElementById('altA').value,
+        altB: document.getElementById('altB').value,
+        altC: document.getElementById('altC').value,
+        altD: document.getElementById('altD').value,
+        correct: document.getElementById('correct').value
+    }
+    questionStorage.addQuestion(form.question, [form.altA, form.altB, form.altC, form.altD], form.correct)
+    ReactDOM.render(<App quest={questionStorage}/>, root)
+}
     render(){
         return(
             <div className="add__question">
-                <form action="#" onSubmit={() => this.teste()}>
-                    <input className="add__question--inputs" type="text" placeholder="Insira uma nova pergunta"/>
-                    <input className="add__question--inputs" type="text" placeholder="Alternativa a"/>
-                    <input className="add__question--inputs" type="text" placeholder="Alternativa b"/>
-                    <input className="add__question--inputs" type="text" placeholder="Alternativa c"/>
-                    <input className="add__question--inputs" type="text" placeholder="Alternativa d"/>
-                    <input className="add__question--inputs" type="text" placeholder="Qual alternativa é a correta?"/>
+                <form action="#" id="insert__question" onSubmit={() => this.addNewQuestion()}>
+                    <input id="question" className="add__question--inputs" type="text" placeholder="Insira uma nova pergunta"/>
+                    <input id="altA" className="add__question--inputs" type="text" placeholder="Alternativa a"/>
+                    <input id="altB" className="add__question--inputs" type="text" placeholder="Alternativa b"/>
+                    <input id="altC" className="add__question--inputs" type="text" placeholder="Alternativa c"/>
+                    <input id="altD" className="add__question--inputs" type="text" placeholder="Alternativa d"/>
+                    <input id="correct" className="add__question--inputs" type="text" placeholder="Qual alternativa é a correta?"/>
                     <input className="add__question--button" type="submit"/>
                 </form>
             </div>
