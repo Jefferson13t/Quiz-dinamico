@@ -33,7 +33,7 @@
 }
 
 .answer__container--answer {
-    border: blueviolet 1px solid;
+    border: rgb(49, 13, 83) 1px solid;
     padding: 5px;
     border-radius: 10px;
 }
