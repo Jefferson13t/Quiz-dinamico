@@ -21,11 +21,12 @@ questionStorage.addQuestion('qual a maior montanha do mundo', ['Monte evereste',
 questionStorage.addQuestion('qual palavra nao tem traducao em inglês', ['amor', 'pernilongo', 'saudade','batata'], 'c')
 questionStorage.addQuestion('qual finalidade da placa mae', ['chingar o filho', 'agregar os componentes de um microcomputador', 'gerar bebes','sei la'], 'd')
 
+
 class App extends React.Component {
     render(){
         return(
             <div className="container"> 
-                <h1>Quiz</h1>
+                <h1>Quiz Dinâmico</h1>
                 <QuestionContainer quest={this.props.quest}/>
             </div>
         )
@@ -34,7 +35,7 @@ class App extends React.Component {
 
 class QuestionContainer extends React.Component {
     render(){
-        let final = this.props.quest.questions.map(a=> <div className="question__container"> 
+        let final = this.props.quest.questions.map(a=> <div key={a.question} className="question__container"> 
             <h2>{a.question}</h2>
             <AnswerContainer ans={a}/>
             
@@ -51,7 +52,7 @@ class QuestionContainer extends React.Component {
 
 class AnswerContainer extends React.Component{
     render(){
-        let final = this.props.ans.answers.map(a=><div>
+        let final = this.props.ans.answers.map(a=><div key={a}>
                 <p className="answer__container--answer">{a}</p>
             </div>)
         return(
@@ -63,10 +64,14 @@ class AnswerContainer extends React.Component{
 }
 
 class AddNewQuestion extends React.Component {
+    constructor(props){
+        super(props)
+    }
+    teste = () => {console.log('teste')}
     render(){
         return(
             <div className="add__question">
-                <form>
+                <form action="#" onSubmit={() => this.teste()}>
                     <input className="add__question--inputs" type="text" placeholder="Insira uma nova pergunta"/>
                     <input className="add__question--inputs" type="text" placeholder="Alternativa a"/>
                     <input className="add__question--inputs" type="text" placeholder="Alternativa b"/>
@@ -74,7 +79,6 @@ class AddNewQuestion extends React.Component {
                     <input className="add__question--inputs" type="text" placeholder="Alternativa d"/>
                     <input className="add__question--inputs" type="text" placeholder="Qual alternativa é a correta?"/>
                     <input className="add__question--button" type="submit"/>
-
                 </form>
             </div>
         )
